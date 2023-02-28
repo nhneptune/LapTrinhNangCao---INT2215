@@ -2,57 +2,28 @@
 
 using namespace std;
 
+bool soDoiGuong(int n)
+{
+    int m = n;
+    int s = 0;
+    if (n % 10 != 1) return false;
+    while (m > 0)
+    {
+        s = s * 10 + m % 10;
+        m /= 10;
+    }
+    return s == n;
+}
+
 int main()
 {
-    int m, n;
-    cin >> m >> n;
-    char input[m][n];
-
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
-            cin >> input[i][j];
-        }
-    }
-
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
-            if(input[i][j] == '.'){
-                int count = 0;
-                if(input[i][j+1] == '*'){
-                    count++;
-                }
-                if(input[i][j-1] == '*'){
-                    count++;
-                }
-                if(input[i+1][j] == '*'){
-                    count++;
-                }
-                if (input[i-1][j] == '*'){
-                    count++;
-                }
-                if (input[i+1][j+1] == '*'){
-                    count++;
-                }
-                if (input[i+1][j-1] == '*'){
-                    count++;
-                }
-                if (input[i-1][j+1] == '*'){
-                    count++;
-                }
-                if (input[i-1][j-1] == '*'){
-                    count++;
-                }
-                input[i][j] = char('0' + count);
-            }
-        }
-    }
-
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
-            cout << input[i][j];
-        }
-        cout << endl;
-    }
-
+    int n;
+    cin >> n;
+    int count = 0;
+    for (int i = 1; i <= n; i++)
+        if (soDoiGuong(i))
+            count++;
+    
+    cout << count;
     return 0;
 }
